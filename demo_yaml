@@ -1,0 +1,1161 @@
+cards:
+  - card:
+      color: none
+      color_type: card
+      entity: sensor.nws_alert_text
+      icon: mdi:alert
+      layout: icon_state
+      show_icon: true
+      show_name: false
+      show_state: true
+      size: 100%
+      styles:
+        card:
+          - height: auto
+          - max-width: 100%
+          - padding: 15px
+          - padding-bottom: 15px
+          - box-shadow: none
+          - color: red
+          - animation: blink 4s ease infinite
+        state:
+          - text-transform: uppercase
+          - font-weight: bold
+          - font-family: helvetlica header
+          - justify-self: start
+          - font-size: 24px
+      tap_action:
+        action: call-service
+        service: browser_mod.popup
+        service_data:
+          card:
+            card:
+              content: >
+                ##{% if is_state('sensor.nws_alerts','1') %} {{
+                states.sensor.nws_alerts.attributes.display_desc }} {% else %}
+                {{ states.sensor.nws_alerts.attributes.display_desc_[0] }} {%
+                endif %}
+              style: |
+                ha-card {
+                  color: white;
+                  font-size: 16px;
+                  font-weight: bold;
+                  font-family: helvetlica header;
+                  width: 100%;
+                  font-weight: normal;
+                  background: black;
+                  box-shadow: none;
+                }
+              type: markdown
+            conditions:
+              - entity: sensor.nws_alerts
+                state_not: '0'
+            type: conditional
+          deviceID:
+            - this
+          style:
+            background: none
+            box-shadow: none
+            color: red
+            font-family: helvetlica header
+            font-weight: bold
+            text-align: center
+            width: 50%
+          title: ALERT BULLETIN!!!
+      type: custom:button-card
+    conditions:
+      - entity: sensor.nws_alerts
+        state_not: '0'
+    type: conditional
+  - elements:
+      - entity: sun.sun
+        state_filter: null
+        state_image:
+          below_horizon: /local/jinxhouse/day_blue_home1.png
+          above_horizon: /local/jinxhouse/blue_home1.png
+        style:
+          '--ha-card-border-radius': none
+          left: 44%
+          top: 40%
+          width: 135%
+        type: image
+      - entity: input_boolean.mblamp2_bool
+        filter: brightness(160%) contrast(1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/masterlamp2.png
+        style:
+          left: 21.8%
+          top: 55.5%
+          width: 13.2%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mblamp1_bool
+        filter: brightness(160%) contrast(1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/masterlamp1.png
+        style:
+          left: 10.4%
+          top: 59.8%
+          width: 13%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mbed_bool
+        filter: brightness(120%) contrast(1.3)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/masterbed.png
+        style:
+          left: 18.8%
+          top: 47.2%
+          width: 29%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mbath_bool
+        filter: brightness(130%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/masterbath.png
+        style:
+          left: 27%
+          top: 55.4%
+          width: 34%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mtoilet_bool
+        filter: brightness(150%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/mastertoilet.png
+        style:
+          left: 36%
+          top: 56%
+          width: 15%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mcloset_bool
+        filter: brightness(125%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/mastercloset.png
+        style:
+          left: 36%
+          top: 54%
+          width: 15%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.ek_lamp
+        filter: brightness(170%) contrast(1.4) saturate(3.4) hue-rotate(360deg)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/ekinlamp.png
+        style:
+          left: 84%
+          top: 57%
+          width: 23%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.ek_light
+        filter: brightness(140%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/ekinroom.png
+        style:
+          left: 79.5%
+          top: 56.9%
+          width: 32.4%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.ek_fan
+        filter: opacity(70%) contrast(1.4) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 80%
+          top: 51%
+          transform: rotateX(180deg)
+          width: 10%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.el_lamp
+        filter: brightness(180%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/elilamp1.png
+        style:
+          left: 43.9%
+          top: 40%
+          width: 136%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.el_lamp
+        filter: brightness(160%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/elilamp2.png
+        style:
+          left: 43.9%
+          top: 40%
+          width: 136%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.el_light
+        filter: contrast(1.3) brightness(120%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/eliroom.png
+        style:
+          left: 61.5%
+          top: 57.5%
+          width: 34.1%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.el_fan
+        filter: opacity(70%) contrast(1.4) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 48%
+          top: 51%
+          transform: rotateX(180deg)
+          width: 10%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.boysbath_bool
+        filter: contrast(1.4) brightness(110%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/boysbath.png
+        style:
+          left: 51%
+          top: 47%
+          width: 13%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.laundry_bool
+        filter: contrast(1.2) brightness(220%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/laundry.png
+        style:
+          left: 60.7%
+          top: 32.3%
+          width: 7.5%
+        tap_action:
+          action: none
+        type: image
+      - state_image:
+          open: /local/jinxhouse/
+        type: image
+      - entity: input_boolean.bp_patiolight
+        filter: brightness(110%) opacity(70%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/backpatio.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.bp_mainpatiolight
+        filter: contrast(1.1) brightness(100%) opacity(70%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/main_bp.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.bp_fan1
+        filter: opacity(70%) contrast(1.2) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 10%
+          top: 24%
+          transform: rotateX(160deg) rotateY(-25deg)
+          width: 13%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.bp_fan2
+        filter: opacity(70%) contrast(1.4) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 8%
+          top: 33%
+          transform: rotateX(160deg) rotateY(-25deg)
+          width: 13%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.fireplace
+        filter: brightness(160%) contrast(1.1) saturate(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/fireplace.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.mantlelight
+        filter: brightness(160%) contrast(1.1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/mantle.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.k_tablelight
+        filter: brightness(200%) contrast(1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/kitch_table2.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.k_mainlight
+        filter: contrast(1.2) brightness(120%) opacity(70%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/main_kitch.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.lr_light
+        filter: contrast(1.2) brightness(120%) opacity(70%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/liv_room.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.islandlight
+        filter: contrast(1) brightness(200%) saturate(1.8) opacity(40%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/island_light.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.k_blind
+        state_filter:
+          closed: brightness(180%) contrast(1.2)
+          open: brightness(200%) contrast(1) saturate(1)
+        state_image:
+          'off': /local/jinxhouse/lights/blind_closed.png
+          'on': /local/jinxhouse/lights/blind_opened.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.garage_bool
+        filter: contrast(1.3) brightness(145%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/garage.png
+        style:
+          left: 75.4%
+          top: 28%
+          width: 21.4%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.garagedoor
+        filter: contrast(2) brightness(40%) saturate(2)
+        state_image:
+          'off': /local/jinxhouse/lights/gar_close.gif
+          'on': /local/jinxhouse/lights/gar_open.gif
+        state_filter:
+          'on': brightness(150%)
+        style:
+          left: 82.2%
+          top: 30.9%
+          width: 4.6%
+        type: image
+      - entity: input_boolean.dwlight
+        filter: contrast(1) brightness(110%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/address.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.fplight
+        filter: brightness(120%) contrast(1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/frontporch.png
+        style:
+          left: 44%
+          top: 40%
+          width: 135%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.dininglight
+        filter: contrast(1.2) brightness(140%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/dining.png
+        style:
+          left: 84.4%
+          top: 53.4%
+          width: 54.3%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.hwl_bool
+        filter: brightness(90%) contrast(1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/hwl.png
+        style:
+          left: 66%
+          top: 55.2%
+          width: 25%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.gr_light
+        filter: brightness(140%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/gameroom.png
+        style:
+          left: 64%
+          top: 50.5%
+          width: 39.5%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.gr_fan
+        filter: opacity(70%) contrast(1.4) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 64%
+          top: 50%
+          transform: rotateX(180deg)
+          width: 12%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.foyerlight
+        filter: brightness(170%) contrast(1.2)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/lights/foyer.png
+        style:
+          left: 65.6%
+          top: 46.6%
+          width: 50.2%
+        tap_action:
+          action: none
+        type: image
+      - entity: sensor.lrtv_current_media
+        filter: brightness(100%) contrast(1.1)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          Amazon Prime Video: /local/jinxhouse/icons/amazon.gif
+          Fire TV: /local/jinxhouse/icons/firetv.gif
+          Hulu: /local/jinxhouse/hulu.gif
+          Live TV: /local/jinxhouse/icons/livetv.gif
+          Netflix: /local/jinxhouse/icons/netflix.gif
+          Photo & Video: /local/jinxhouse/icons/cinema.gif
+          Plex: /local/jinxhouse/plex_1.gif
+          YouTube: /local/jinxhouse/icons/youtube_rz.gif
+          Disney+: /local/jinxhouse/disney.gif
+        style:
+          left: 33.6%
+          top: 25.9%
+          transform: scale(1.3,.8) skewX(1.8deg)
+          width: 6%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.lr_fan
+        filter: opacity(70%) contrast(1.4) saturate(40)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fanspeed_1.gif
+        style:
+          left: 27%
+          top: 21%
+          transform: rotateX(160deg)
+          width: 17%
+        tap_action:
+          action: none
+        type: image
+      - entity: input_boolean.fireplace
+        filter: opacity(100%) contrast(20) saturate(2) brightness(150%)
+        image: /local/jinxhouse/blank.png
+        state_image:
+          'on': /local/jinxhouse/icons/fp.gif
+        style:
+          left: 25.2%
+          top: 33.6%
+          transform: scale(.9,.67) rotateX(12deg) rotateY(-65deg) rotateZ(-5deg)
+          width: 4%
+        tap_action:
+          action: none
+        type: image
+      - type: custom:button-card
+        entity: sensor.vacuum_state
+        icon: mdi:robot-vacuum-variant
+        color_type: icon
+        size: 60px
+        show_name: false
+        show_state: true
+        tap_action:
+          action: none
+        styles:
+          card:
+            - width: 140px
+            - height: 120px
+            - bottom: 950px
+            - left: 1100px
+            - background: none
+            - box-shadow: none
+            - font-family: helvetlica header
+            - font-size: 10px
+            - color: white
+            - '--primary-icon-color': white
+      - card:
+          entities:
+            - entity: sensor.game_room_temperature
+              name: Temp
+            - entity: sensor.game_room_humidity
+              name: Humidity
+          type: glance
+        style:
+          '--ha-card-background': none
+          '--ha-card-box-shadow': none
+          '--paper-item-icon-color': blue
+          '--primary-text-color': white
+          font-size: 12px
+          left: 91%
+          max-width: 100%
+          top: 8%
+          width: 15%
+        type: custom:mod-card
+      - entity: input_boolean.sensor_bool
+        image: /local/jinxhouse//icons/popup_tp.png
+        style:
+          left: 85%
+          top: .4%
+          transform: scale(1.3,.75)
+          width: 10%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              entity: climate.game_room
+              style: |
+                ha-card {
+                  background: {% if is_state('climate.game_room', 'cool') %} blue {% elif is_state('climate.game_room', 'heat') %} orange {% endif %};
+                  filter: opacity(60%) brightness(120%);
+                }
+              title: Nest
+              type: thermostat
+            style:
+              background: none
+              box-shadow: none
+              font-family: helvetlica header
+              font-size: 19px
+            title: GAME ROOM THERMOSTAT
+        type: image
+      - entity: input_boolean.mbath_bool
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 12%
+          top: 39%
+          transform: scale(1.5,.6) skewX(-1deg)
+          width: 25%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              text: Voided! Tap More Wisely!
+              type: custom:text-element
+            title: WRONG!!!
+        type: image
+      - entity: input_boolean.boysbath_bool
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 43%
+          top: 42%
+          transform: scale(.8,.75)
+          width: 20%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              text: Think Again! Tap Somewhere Else
+              type: custom:text-element
+            title: ERROR!
+        type: image
+      - entity: input_boolean.ek_light
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 76%
+          top: 44%
+          transform: scale(.8,.6) skewX(10deg)
+          width: 20%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              text: Loser! Tap on Something Else
+              type: custom:text-element
+            title: UGH, NO!
+        type: image
+      - entity: input_boolean.dining_foyer.popup
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 76%
+          top: 32%
+          transform: scale(2.1,.6) skewX(7deg)
+          width: 15%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              entities:
+                - entity: input_boolean.dininglight
+                  name: Dining Room Light
+                - entity: input_boolean.foyerlight
+                  icon: mdi:lightbulb
+                  name: Foyer Light
+                - entity: input_boolean.fplight
+                  icon: mdi:lightbulb
+                  name: Front Porch Light
+                - entity: input_boolean.dwlight
+                  icon: mdi:lightbulb
+                  name: Address Light
+              show_header_toggle: false
+              state_color: true
+              style: |
+                ha-card {
+                  color: white;
+                  background: black;
+                  --ha-card-border-radius: none; 
+                }
+              type: entities
+            style:
+              background: black
+              color: white
+              font-family: helvetlica header
+              text-shadow: 2px 2px 3px white
+            title: DINING/FOYER/FRONT
+        type: image
+      - entity: input_boolean.gameroom_popup
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 62%
+          top: 47%
+          transform: scale(1,.8) skewX(8deg)
+          width: 15%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              cards:
+                - entities:
+                    - entity: input_boolean.gr_light
+                      name: Game Room Light
+                    - entity: input_number.gr_slider
+                      icon: mdi:lightbulb-multiple-outline
+                      name: Dim\Bright
+                    - entity: input_boolean.gr_blind
+                      name: Game Room Blind
+                    - type: divider
+                  style: |
+                    ha-card {
+                      color: white;
+                      background: black;                       
+                      --ha-card-border-radius: none;           
+                    }
+                  show_header_toggle: false
+                  state_color: true
+                  type: entities
+                - customIsOffColor: black
+                  customIsOnHiColor: '#a47709'
+                  customIsOnLowColor: '#CD950C'
+                  customIsOnMedColor: '#b8860a'
+                  customTheme: true
+                  entity: input_boolean.gr_fan
+                  name: Game Room Fan
+                  type: custom:fan-control-entity-row
+              type: vertical-stack
+            style:
+              background: black
+              box-shadow: none
+              color: white
+              font-family: helvetlica header
+              text-shadow: 2px 2px 3px white
+            title: GAME ROOM
+        type: image
+      - entity: input_boolean.garage_popup
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 67%
+          top: 18%
+          transform: scale(1.2,.7) skewX(10deg)
+          width: 15%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              cards:
+                - entities:
+                    - entity: input_boolean.garage_bool
+                      icon: mdi:lightbulb
+                      name: Garage Light
+                    - type: divider
+                  show_header_toggle: false
+                  state_color: true
+                  style: |
+                    ha-card {
+                      color: white;
+                      background: black;
+                      --ha-card-border-radius: none;
+                    }    
+                  type: entities
+                - color: yellow
+                  color_type: card
+                  entity: input_boolean.garagedoor
+                  icon: mdi:garage-open-variant
+                  layout: icon_name_state
+                  name: Garage Door
+                  show_label: true
+                  show_state: true
+                  size: 40%
+                  state:
+                    - color: black
+                      icon: mdi:garage-variant
+                      operator: '=='
+                      value: closed
+                  tap_action:
+                    action: toggle
+                  type: custom:button-card
+              type: vertical-stack
+            style:
+              background: var(--background-image)
+              font-family: helvetlica header
+              text-shadow: 2px 2px 3px white
+            title: GARAGE
+        type: image
+      - entity: input_boolean.kitchen_popup
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          left: 48%
+          top: 22%
+          transform: scale(1.2,.9) skewX(8deg)
+          width: 15%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              entities:
+                - entity: input_boolean.k_mainlight
+                  name: Main Kitchen Light
+                - entity: input_number.km_slider
+                  icon: mdi:lightbulb-multiple-outline
+                  name: Dim/Bright
+                - entity: input_boolean.k_tablelight
+                  icon: mdi:lightbulb
+                  name: Kitchen Table Light
+                - entity: input_boolean.islandlight
+                  icon: mdi:lightbulb
+                  name: Island Light
+                - entity: input_boolean.laundry_bool
+                  icon: mdi:lightbulb
+                  name: Laundry Light
+                - type: divider
+                - entity: input_boolean.k_blind
+                  name: Kitchen Blind
+              show_header_toggle: false
+              state_color: true
+              style: |
+                ha-card {
+                   color: white;
+                   background: black; 
+                   --ha-card-border-radius: none;
+                }
+              type: entities
+            style:
+              color: white
+              background: black
+            title: KITCHEN/LAUNDRY
+        type: image
+      - entity: input_boolean.backpatio_popup
+        image: /local/jinxhouse/icons/L_shape_popup_tp.png
+        style:
+          bottom: 59%
+          left: 16%
+          transform: scale(1.2,1.3) skewX(-15deg)
+          width: 23%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              cards:
+                - entities:
+                    - entity: input_boolean.bp_mainpatiolight
+                      name: Main Patio Light
+                    - entity: input_number.bp_slider
+                      icon: mdi:lightbulb-multiple-outline
+                      name: Dim/Bright
+                    - entity: input_boolean.bp_patiolight
+                      name: Back Patio Light
+                  show_header_toggle: false
+                  state_color: true
+                  style: |
+                    ha-card {
+                      background: black;
+                      color: white;                                         
+                    }
+                  type: entities
+                - customIsOffColor: black
+                  customIsOnHiColor: '#a47709'
+                  customIsOnLowColor: '#CD950C'
+                  customIsOnMedColor: '#b8860a'
+                  customTheme: true
+                  entity: input_boolean.bp_fan1
+                  name: Back Patio Fan 1
+                  type: custom:fan-control-entity-row
+                - customIsOffColor: black
+                  customIsOnHiColor: '#a47709'
+                  customIsOnLowColor: '#CD950C'
+                  customIsOnMedColor: '#b8860a'
+                  customTheme: true
+                  entity: input_boolean.bp_fan2
+                  name: Back Patio Fan 2
+                  type: custom:fan-control-entity-row
+              type: vertical-stack
+            style:
+              background: black
+              color: white
+              font-family: helvetlica header
+              text-shadow: 2px 2px 3px white
+            title: BACK PATIO
+        type: image
+      - entity: input_boolean.livroom_popup
+        image: /local/jinxhouse/icons/popup_tp.png
+        style:
+          border-radius: 15px
+          bottom: 55%
+          left: 27%
+          transform: scale(1.5,1)
+          width: 15%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            card:
+              cards:
+                - entities:
+                    - entity: input_boolean.lr_light
+                      name: Living Room Light
+                    - entity: input_number.lr_slider
+                      icon: mdi:lightbulb-multiple-outline
+                      name: Dim/Bright
+                    - entity: input_boolean.mantlelight
+                      icon: mdi:lightbulb
+                      name: Mantle Light
+                    - entity: input_boolean.fireplace
+                      icon: mdi:fireplace-off
+                      name: Fire Place
+                  show_header_toggle: false
+                  state_color: true
+                  style: |
+                    ha-card {
+                      color: white;
+                      background: black;
+                      --ha-card-border-radius: none;
+                    }
+                  type: entities
+                - customIsOffColor: black
+                  customIsOnHiColor: '#a47709'
+                  customIsOnLowColor: '#CD950C'
+                  customIsOnMedColor: '#b8860a'
+                  customTheme: true
+                  entity: input_boolean.lr_fan
+                  name: Living Room Fan
+                  type: custom:fan-control-entity-row
+              type: vertical-stack
+            large: false
+            style:
+              background: black
+              color: white
+              font-family: helvetlica header
+              text-shadow: 2px 2px 3px white
+            title: LIVING ROOM
+        type: image
+      - direction: left
+        entity: sensor.salt_level
+        height: 6.5px
+        width: 100px
+        icon: hide
+        positions:
+          name: outside
+        severity:
+          - color: rgb(0,191,255)
+            from: 70
+            to: 100
+          - color: Darkorange
+            from: 40
+            to: 69
+          - color: Red
+            from: 0
+            to: 39
+        style:
+          '--ha-card-background': none
+          '--ha-card-border-radius': none
+          '--ha-card-box-shadow': none
+          font-size: 9px
+          left: 63%
+          top: 32%
+          transform: skewX(20deg)
+        type: custom:bar-card
+      - type: state-label
+        entity: sensor.mr_sucker_battery
+        style:
+          top: 13.5%
+          right: 16.5%
+          font-size: 10px
+      - type: image
+        image: /local/jinxhouse/icons/popup_tp.png
+        entity: input_boolean.robot_vac_popup
+        style:
+          top: 7.5%
+          right: 12.5%
+          width: 12%
+          height: 12%
+        tap_action:
+          action: fire-dom-event
+          browser_mod:
+            command: popup
+            title: Mr. Sucker
+            card:
+              type: horizontal-stack
+              cards:
+                - entity: script.vacuum_toggle
+                  name: Vacuum Start/Pause
+                  show_icon: false
+                  styles:
+                    card:
+                      - font-size: 14px
+                      - height: 80px
+                      - color: green
+                      - background: black
+                    name:
+                      - text-overflow: unset
+                      - white-space: unset
+                      - word-break: break-word
+                  tap_action:
+                    action: toggle
+                  type: custom:button-card
+                - type: custom:button-card
+                  entity: script.vacuum_return
+                  name: Vacuum Return to Base
+                  show_icon: false
+                  styles:
+                    card:
+                      - font-size: 14px
+                      - color: red
+                      - height: 80px
+                      - background: black
+                    name:
+                      - text-overflow: unset
+                      - white-space: unset
+                      - word-break: break-word
+                  tap_action:
+                    action: toggle
+      - entity: sensor.date_local_time
+        style:
+          color: white
+          font-family: helvetlica header
+          font-size: 2.9em
+          left: 22%
+          max-width: 100%
+          opacity: 80%
+          text-shadow: 5px 6px 8px white
+          top: 5%
+        tap_action:
+          action: none
+        type: state-label
+      - card:
+          cards:
+            - card:
+                show_header_toggle: false
+                state_color: true
+                type: entities
+              entities:
+                - entity: input_boolean.lr_light
+                  name: Living Room Light
+                - entity: input_boolean.k_mainlight
+                  name: Main Kitchen Light
+                - entity: input_boolean.k_tablelight
+                  icon: mdi:lightbulb
+                  name: Kitchen Table Light
+                - entity: input_boolean.lr_fan
+                  name: Living Room Fan
+              state_filter:
+                - 'on'
+              type: entity-filter
+            - card:
+                show_header_toggle: false
+                state_color: true
+                type: entities
+              entities:
+                - entity: input_boolean.bp_mainpatiolight
+                  name: Main Back Patio
+                - entity: input_boolean.bp_patiolight
+                  icon: mdi:lightbulb
+                  name: Back Patio Light
+                - entity: input_boolean.bp_fan1
+                  name: Back Patio Fan 1
+                - entity: input_boolean.bp_fan2
+                  name: Back Patio Fan 2
+              state_filter:
+                - 'on'
+              type: entity-filter
+            - card:
+                show_header_toggle: false
+                state_color: true
+                type: entities
+              entities:
+                - entity: input_boolean.mantlelight
+                  icon: mdi:lightbulb
+                  name: Mantle Light
+                - entity: input_boolean.fireplace
+                  icon: mdi:fire
+                  name: Fireplace
+                - entity: input_boolean.dininglight
+                  name: Dining Room Light
+                - entity: input_boolean.k_blind
+                  name: Kitchen Blind
+              state_filter:
+                - 'on'
+                - open
+              type: entity-filter
+            - card:
+                show_header_toggle: false
+                state_color: true
+                type: entities
+              entities:
+                - entity: input_boolean.gr_light
+                  name: Game Room Light
+                - entity: input_boolean.gr_blind
+                  name: Game Room Blind
+                - entity: input_boolean.gr_fan
+                  name: Game Room Fan
+                - entity: input_boolean.fplight
+                  icon: mdi:lightbulb
+                  name: Front Porch Light
+              state_filter:
+                - 'on'
+                - open
+              type: entity-filter
+            - card:
+                show_header_toggle: false
+                state_color: true
+                type: entities
+              entities:
+                - entity: input_boolean.foyerlight
+                  icon: mdi:lightbulb
+                  name: Foyer Light
+                - entity: input_boolean.dwlight
+                  icon: mdi:lightbulb
+                  name: Address Light
+                - entity: input_boolean.islandlight
+                  icon: mdi:lightbulb
+                  name: Island Light
+                - entity: input_boolean.garagedoor
+                  name: Garage Door
+              state_filter:
+                - 'on'
+                - open
+              type: entity-filter
+          type: horizontal-stack
+        style:
+          '--ha-card-background': none
+          '--ha-card-box-shadow': none
+          '--primary-text-color': white
+          font-size: 8px
+          left: 36%
+          max-width: 100%
+          top: 78%
+          width: 70%
+        type: custom:mod-card
+    image: /local/jinxhouse/blank.png
+    type: picture-elements
+mode: vertical
+type: custom:stack-in-card
